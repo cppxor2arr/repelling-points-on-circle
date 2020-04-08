@@ -44,8 +44,10 @@ int main()
                 case sf::Keyboard::Q:
                     window.close();
                     break;
-                default:;
+                default:
+                    break;
                 }
+                break;
             case sf::Event::MouseButtonPressed: {
                 const auto touch_angle = get_touch_angle(
                     window.mapPixelToCoords(

@@ -1,3 +1,4 @@
+#include "constants.hpp"
 #include "helpers.hpp"
 #include "spin.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -57,8 +58,14 @@ int main()
                 captured_point = std::min_element(
                     points.begin(), points.end(),
                     [touch_angle](const auto &p1, const auto &p2) {
-                        return std::abs(p1.angle - touch_angle)
-                               < std::abs(p2.angle - touch_angle);
+                        float angle1 = std::fmod(
+                            p1.angle - touch_angle + 2 * pi, 2 * pi);
+                        angle1 = std::min(angle1, 2 * pi - angle1);
+                        float angle2 = std::fmod(
+                            p2.angle - touch_angle + 2 * pi, 2 * pi);
+                        angle2 = std::min(angle2, 2 * pi - angle2);
+
+                        return angle1 < angle2;
                     });
                 captured_point->set_update_enabled(false);
                 captured_point->angle = touch_angle;

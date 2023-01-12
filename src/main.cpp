@@ -12,7 +12,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(600, 450), "Spin");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(120);
 
     if (!window.isOpen()) {
         return EXIT_FAILURE;

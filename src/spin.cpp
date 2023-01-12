@@ -81,11 +81,11 @@ void RepellingPointsOnCircle::set_num_points(
     const PointVector::size_type num_points)
 {
     m_num_points = num_points;
-    const float delta = 2 * pi / num_points;
+    const float delta = 2 * pi / static_cast<float>(num_points);
 
     _points.clear();
     for (PointVector::size_type n = 0; n != num_points; ++n) {
-        const float angle = n * delta;
+        const float angle = static_cast<float>(n) * delta;
         _points.emplace_back(m_radius, angle);
     }
 }
